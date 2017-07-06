@@ -11,6 +11,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+
 public class MainActivity extends AppCompatActivity {
 private  static final String TAG="MainActivity";
 
@@ -19,6 +26,59 @@ private  static final String TAG="MainActivity";
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
         setContentView(R.layout.activity_main);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message").child("2");
+        DatabaseReference newusers = database.getReference("users").child("222005555");
+        Log.d("App", newusers.getKey());
+        newusers.child("profil").child("nume").setValue("ana");
+
+        DatabaseReference groupspublic = database.getReference("groups").push();
+        groupspublic.child("public").child("nume").setValue("Oradea - Cluj");
+
+        DatabaseReference myRefe = database.getReference("message").child("1");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        myRefe.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+
+        myRef.setValue("Sefa este Diana!!!!");
+        myRefe.setValue("Nu mai vorbesc cu tine!!!! o sa lucrezi singur!!!");
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
