@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 
 /**
  * Created by Lenovo on 05.07.2017.
@@ -19,8 +20,20 @@ private static String TAG="SecondActivity";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.second_activity);
+
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       //
+
+
+        //Intent intent = new Intent (this, MainActivity.class);
+        //startActivity(intent);
 
     }
+
+
 
     @Override
     protected void onStart() {

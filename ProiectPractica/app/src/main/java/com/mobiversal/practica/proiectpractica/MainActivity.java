@@ -30,6 +30,7 @@ private  static final String TAG="MainActivity";
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message").child("2");
         DatabaseReference newusers = database.getReference("users").child("222005555");
+
         Log.d("App", newusers.getKey());
         newusers.child("profil").child("nume").setValue("ana");
 
@@ -79,8 +80,8 @@ private  static final String TAG="MainActivity";
 
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            //setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -91,8 +92,8 @@ private  static final String TAG="MainActivity";
             }
         });
 
-        Intent intent = new Intent (this, SecondActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent (this, SecondActivity.class);
+       // startActivity(intent);
     }
 
     @Override
