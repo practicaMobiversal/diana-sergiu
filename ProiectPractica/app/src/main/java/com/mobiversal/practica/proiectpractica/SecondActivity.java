@@ -20,7 +20,6 @@ private static String TAG="SecondActivity";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.second_activity);
 
 

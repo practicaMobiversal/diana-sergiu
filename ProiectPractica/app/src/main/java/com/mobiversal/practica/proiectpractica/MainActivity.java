@@ -80,8 +80,8 @@ private  static final String TAG="MainActivity";
 
 
 
-        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +147,7 @@ private  static final String TAG="MainActivity";
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.add) {
             return true;
         }
 
