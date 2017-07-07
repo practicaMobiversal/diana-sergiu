@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mobiversal.practica.proiectpractica.MainActivity">
+
     <item
         android:id="@+id/search"
         android:title="search"
@@ -10,13 +11,13 @@
     <item
         android:id="@+id/add"
         android:title="Grup nou "
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         app:srcCompat = "@android:drawable/ic_dialog_email"
         />
     <item
         android:id="@+id/remove"
         android:title="Profil"
-        app:showAsAction="never|withText"
+        app:showAsAction="never"
         app:srcCompat = "@android:drawable/ic_dialog_email"
         />
 </menu>
