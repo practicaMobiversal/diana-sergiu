@@ -1,5 +1,6 @@
 package com.mobiversal.practica.proiectpractica;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,7 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 private  static final String TAG="MainActivity";
 
     @Override
@@ -37,7 +46,6 @@ private  static final String TAG="MainActivity";
         DatabaseReference groupspublic = database.getReference("groups").push();
         groupspublic.child("public").child("nume").setValue("Oradea - Cluj");
 
-        DatabaseReference myRefe = database.getReference("message").child("1");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -56,44 +64,34 @@ private  static final String TAG="MainActivity";
             }
         });
 
-        myRefe.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
-
-
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-
-
-        myRef.setValue("Sefa este Diana!!!!");
-        myRefe.setValue("Nu mai vorbesc cu tine!!!! o sa lucrezi singur!!!");
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         //Intent intent = new Intent (this, SecondActivity.class);
-       // startActivity(intent);
+        //startActivity(intent);
+    }
+
+    public void SendMessage(View view){
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+
+
+    }
+
+    public void CreateNewGroup(View view){
+        Intent intent = new Intent(this, CreateGroup.class);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton) ;
+
+        startActivity(intent);
+    }
+
+    public void ViewProfil(View view){
+        Intent intent = new Intent(this, ViewProfill.class);
+        startActivity(intent);
     }
 
     @Override

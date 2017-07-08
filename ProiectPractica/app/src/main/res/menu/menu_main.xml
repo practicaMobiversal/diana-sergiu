@@ -7,17 +7,20 @@
         android:id="@+id/search"
         android:title="search"
         app:showAsAction="always"
+        android:icon="@drawable/ic_search"
+        android:actionViewClass="android.widget.SearchView"
         />
     <item
         android:id="@+id/add"
+        android:onClick="CreateNewGroup"
         android:title="Grup nou "
         app:showAsAction="never"
-        app:srcCompat = "@android:drawable/ic_dialog_email"
-        />
+        app:srcCompat="@android:drawable/ic_dialog_email" />
     <item
         android:id="@+id/remove"
+        android:onClick="ViewProfil"
         android:title="Profil"
         app:showAsAction="never"
-        app:srcCompat = "@android:drawable/ic_dialog_email"
-        />
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        tools:onClick="ViewProfil" />
 </menu>
