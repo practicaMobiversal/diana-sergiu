@@ -22,6 +22,10 @@
         <activity android:name=".SecondActivity">
 
         </activity>
+        <activity android:name=".PhoneAuthActivity"></activity>
+        <activity android:name=".PreferenceManager"></activity>
+        <activity android:name=".WelcomeActivity"></activity>
+        <uses-permission android:name="android.permission."/>
     </application>
 
 </manifest>
