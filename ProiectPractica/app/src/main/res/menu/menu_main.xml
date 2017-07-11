@@ -2,24 +2,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mobiversal.practica.proiectpractica.MainActivity">
-
-
     <item
         android:id="@+id/search"
         android:title="search"
         app:showAsAction="always"
+        android:icon="@drawable/ic_search"
+        android:actionViewClass="android.widget.SearchView"
         />
 
     <item
         android:id="@+id/add"
+        android:onClick="CreateNewGroup"
         android:title="Grup nou "
+        app:showAsAction="ifRoom"
         app:showAsAction="never"
-        app:srcCompat = "@android:drawable/ic_dialog_email"
-        />
+        app:srcCompat="@android:drawable/ic_dialog_email" />
     <item
         android:id="@+id/remove"
+        android:onClick="ViewProfil"
         android:title="Profil"
-        app:showAsAction="never|withText"
-        app:srcCompat = "@android:drawable/ic_dialog_email"
-        />
+        app:showAsAction="never"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        tools:onClick="ViewProfil" />
 </menu>
