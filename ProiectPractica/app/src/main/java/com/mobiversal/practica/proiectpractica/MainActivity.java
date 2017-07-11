@@ -2,10 +2,16 @@ package com.mobiversal.practica.proiectpractica;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -24,17 +30,26 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
+import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
+import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 private  static final String TAG="MainActivity";
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
         setContentView(R.layout.activity_main);
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message").child("2");
@@ -70,17 +85,22 @@ private  static final String TAG="MainActivity";
 
         //Intent intent = new Intent (this, SecondActivity.class);
         //startActivity(intent);
+
+        populateViews();
     }
 
-    public void SendMessage(View view){
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
 
+    private void populateViews(){
+        Fragment[] fragments = new Fragment[2];
+        fragments[0] = new GroupFragments();
+        fragments[1] = new ConversationFragments();
+
+        ViewPagerAdapterMain adapter = new ViewPagerAdapterMain(getSupportFragmentManager(),fragments );
+        viewPager.setAdapter(adapter);
 
     }
+
+
 
     public void CreateNewGroup(View view){
         Intent intent = new Intent(this, CreateGroup.class);
@@ -130,25 +150,7 @@ private  static final String TAG="MainActivity";
         Log.d(TAG , "onDestroy");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.add) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 }
