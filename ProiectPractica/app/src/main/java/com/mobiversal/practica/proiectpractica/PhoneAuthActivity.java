@@ -64,7 +64,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private Button mVerifyButton;
     private Button mResendButton;
     private Button mSignOutButton;
-    private EditText mNameButton;
+    private EditText mNameField;
     private FirebaseDatabase mRef;
 
     @Override
@@ -73,6 +73,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
         setContentView(R.layout.activity_phone_auth);
         Intent intent = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         // Restore instance state
         if (savedInstanceState != null) {
@@ -86,9 +87,10 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         mStatusText = (TextView) findViewById(R.id.status);
         mDetailText = (TextView) findViewById(R.id.detail);
 
+
         mPhoneNumberField = (EditText) findViewById(R.id.field_phone_number);
         mVerificationField = (EditText) findViewById(R.id.field_verification_code);
-        mNameButton = (EditText) findViewById(R.id.username);
+        mNameField = (EditText) findViewById(R.id.username);
 
         mStartButton = (Button) findViewById(R.id.button_start_verification);
         mVerifyButton = (Button) findViewById(R.id.button_verify_phone); //send button too
@@ -103,7 +105,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Users").child("User");
-                String display_name = mNameButton.getText().toString();
+                String display_name = mNameField.getText().toString();
                 String display_number = mPhoneNumberField.getText().toString();
 
                 //creare obiect user
@@ -325,27 +327,27 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         switch (uiState) {
             case STATE_INITIALIZED:
                 // Initialized state, show only the phone number field and start button
-                enableViews(mStartButton, mPhoneNumberField);
+                enableViews(mStartButton, mPhoneNumberField, mNameField);
                 disableViews(mVerifyButton, mResendButton, mVerificationField);
-                mDetailText.setText(null);
+
                 break;
             case STATE_CODE_SENT:
                 // Code sent state, show the verification field, the
                 enableViews(mVerifyButton, mResendButton, mPhoneNumberField, mVerificationField);
                 disableViews(mStartButton);
-                mDetailText.setText(R.string.status_code_sent);
+               // mDetailText.setText(R.string.status_code_sent);
                 break;
             case STATE_VERIFY_FAILED:
                 // Verification has failed, show all options
                 enableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
-                        mVerificationField);
-                mDetailText.setText(R.string.status_verification_failed);
+                        mVerificationField, mNameField);
+               // mDetailText.setText(R.string.status_verification_failed);
                 break;
             case STATE_VERIFY_SUCCESS:
                 // Verification has succeeded, proceed to firebase sign in
                 disableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
                         mVerificationField);
-                mDetailText.setText(R.string.status_verification_succeeded);
+               // mDetailText.setText(R.string.status_verification_succeeded);
 
                 // Set the verification text based on the credential
                 if (cred != null) {
@@ -359,7 +361,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 break;
             case STATE_SIGNIN_FAILED:
                 // No-op, handled by sign-in check
-                mDetailText.setText(R.string.status_sign_in_failed);
+               // mDetailText.setText(R.string.status_sign_in_failed);
                 break;
             case STATE_SIGNIN_SUCCESS:
                 // Np-op, handled by sign-in check
@@ -382,7 +384,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             mVerificationField.setText(null);
 
             mStatusText.setText(R.string.signed_in);
-            mDetailText.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+           // mDetailText.setText(getString(R.string.firebase_status_fmt, user.getUid()));
         }
     }
 

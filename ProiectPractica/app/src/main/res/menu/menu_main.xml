@@ -14,7 +14,7 @@
         android:id="@+id/add"
         android:onClick="CreateNewGroup"
         android:title="Grup nou "
-        app:showAsAction="ifRoom"
+
         app:showAsAction="never"
         app:srcCompat="@android:drawable/ic_dialog_email" />
     <item

@@ -141,7 +141,8 @@
             android:layout_above="@+id/phone_auth_fields"
             android:layout_marginBottom="22dp"
             android:layout_marginStart="17dp"
-            android:layout_toEndOf="@+id/signed_in_buttons">
+            android:layout_toEndOf="@+id/signed_in_buttons"
+            android:id="@+id/textInputLayout">
 
             <EditText
                 android:id="@+id/username"
