@@ -16,10 +16,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,9 +29,9 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
+;import com.google.firebase.auth.FirebaseUserimport com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
 import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
@@ -46,16 +44,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 private  static final String TAG="MainActivity";
-    private ViewPager viewPager;
-    private ViewPagerAdapterMain viewPagerAdapterMain;
-    private TabLayout tabLayout;
-
-    @Override
+private ViewPagerAdapterMain viewPagerAdapterMain;
+    private TabLayout tabLayout;private FirebaseAuth mAuth;    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
+        mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main);
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -148,18 +143,26 @@ private  static final String TAG="MainActivity";
         startActivity(intent);
     }
 
-    public void ViewProfil(View view){
+ public void ViewProfil(View view){
         Intent intent = new Intent(this, ViewProfill.class);
         startActivity(intent);
-    }
+ }    @Override
 
 
 
 
-    @Override
     protected void onStart() {
         super.onStart();
         Log.d(TAG , "onStart");
+        FirebaseUser user =mAuth.getCurrentUser();
+
+        if(user == null){
+            Intent intent = new Intent(MainActivity.this, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            finish();
+        }
+
+
     }
 
     @Override

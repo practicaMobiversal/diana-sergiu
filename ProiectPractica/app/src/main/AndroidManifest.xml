@@ -23,21 +23,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateGroup"
+ <activity android:name=".SecondActivity" />
+        <activity
+            android:name=".DisplayMessageActivity"
             android:parentActivityName=".MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-           </activity>
-        <activity android:name=".ViewProfill"
-                  android:parentActivityName=".MainActivity">
 
+            android:parentActivityName=".MainActivity">
+<activity android:name=".ViewProfill"></activity>
+ <activity android:name=".PreferenceManager"></activity>
+        <activity android:name=".WelcomeActivity"></activity>
+        <uses-permission android:name="android.permission."/>
+ <activity
+            android:name=".CreateGroup"
+            android:parentActivityName=".MainActivity">
+ <activity android:name=".PhoneAuthActivity"></activity>
+        <activity android:name=".PreferenceManager"></activity>
+        <activity android:name=".WelcomeActivity"></activity>
+        <uses-permission android:name="android.permission."/>
+ <activity
+            android:name=".CreateGroup"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
+        
 
-    </application>
-
+ 
+<activity android:name=".ViewProfill"></activity>
+ </application>
 </manifest>
