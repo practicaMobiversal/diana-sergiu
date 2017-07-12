@@ -2,8 +2,7 @@ package com.mobiversal.practica.proiectpractica.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
+import android.os.Handler;import android.support.annotation.DrawableRes;import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -70,10 +69,10 @@ public class GroupFragments extends Fragment {
 
 
     private void prepareGroupData() {
-        GroupAdapter g1 = new GroupAdapter("Mad Max: Fury Road",2);
+        GroupAdapter g1 = new GroupAdapter("Oradea - Beius","S",null,null);
         groupsList.add(g1);
 
-        g1 = new GroupAdapter("Oradea", 5);
+        g1 = new GroupAdapter();
         groupsList.add(g1);
         mAdapter.notifyDataSetChanged();
     }

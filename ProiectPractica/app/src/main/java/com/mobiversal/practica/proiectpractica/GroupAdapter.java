@@ -10,17 +10,18 @@ import android.widget.ImageView;
 
 public class GroupAdapter {
 
-    private String title;
-    private int nr_util;
+    private String title, nr_util;
     ImageButton imageButton;
     ImageView imageView;
 
     public GroupAdapter() {
     }
 
-    public GroupAdapter(String title, int nr_util) {
+    public GroupAdapter(String title, String nr_util,ImageButton imageButton, ImageView imageView) {
         this.title = title;
         this.nr_util=nr_util;
+        this.imageButton=imageButton;
+        this.imageView=imageView;
 
     }
 
@@ -32,10 +33,27 @@ public class GroupAdapter {
         this.title = name;
     }
 
-    public int getNr_util() {
+    public ImageButton getImageButton() {
+        return imageButton;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageButton(ImageButton imageButton) {
+        this.imageButton = imageButton;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public String getNr_util() {
         return nr_util;
     }
-    public void setNr_util(int numar){
+    public void setNr_util(String numar){
         this.nr_util=numar;
 }
+
 }

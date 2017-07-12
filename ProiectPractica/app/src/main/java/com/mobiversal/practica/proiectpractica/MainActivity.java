@@ -3,16 +3,24 @@ package com.mobiversal.practica.proiectpractica;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
+import com.google.firebase.database.DataSnapshot;
+;import com.google.firebase.auth.FirebaseUserimport com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
 import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
 import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
 
@@ -20,8 +28,8 @@ import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 private  static final String TAG="MainActivity";
-    private ViewPager viewPager;    private FirebaseAuth mAuth;
-    @Override
+private ViewPagerAdapterMain viewPagerAdapterMain;
+    private TabLayout tabLayout;private FirebaseAuth mAuth;    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
@@ -32,21 +40,53 @@ private  static final String TAG="MainActivity";
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        viewPager = (ViewPager) findViewById( R.id.viewpager );
+        viewPagerAdapterMain = new ViewPagerAdapterMain( getSupportFragmentManager() );
+
+        viewPager.setAdapter( viewPagerAdapterMain );
+
+        tabLayout = (TabLayout) findViewById( R.id.tab_layout );
+        tabLayout.setupWithViewPager( viewPager );
+
         //Intent intent = new Intent (this, SecondActivity.class);
         //startActivity(intent);
 
-        populateViews();
+        //populateViews();
+
     }
 
 
-    private void populateViews(){
-        Fragment[] fragments = new Fragment[2];
-        fragments[0] = new GroupFragments();
-        fragments[1] = new ConversationFragments();
+//    private void populateViews(){
+//        Fragment[] fragments = new Fragment[2];
+//        fragments[0] = new GroupFragments();
+//        fragments[1] = new ConversationFragments();
+//
+//        ViewPagerAdapterMain adapter = new ViewPagerAdapterMain(getSupportFragmentManager(),fragments );
+//        viewPager.setAdapter(adapter);
+//
+//    }
 
-        ViewPagerAdapterMain adapter = new ViewPagerAdapterMain(getSupportFragmentManager(),fragments );
-        viewPager.setAdapter(adapter);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.menu_main,menu );
+        return super.onCreateOptionsMenu( menu );
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.add) {
+            Intent intent = new Intent(this, CreateGroup.class);
+            startActivity(intent);
+        }
+
+        if (id== R.id.remove){
+            Intent intent = new Intent( this, ViewProfill.class);
+            startActivity( intent );
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -61,7 +101,11 @@ private  static final String TAG="MainActivity";
  public void ViewProfil(View view){
         Intent intent = new Intent(this, ViewProfill.class);
         startActivity(intent);
-    }    @Override
+ }    @Override
+
+
+
+
     protected void onStart() {
         super.onStart();
         Log.d(TAG , "onStart");
