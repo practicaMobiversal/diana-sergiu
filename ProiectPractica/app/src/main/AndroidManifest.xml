@@ -34,9 +34,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-       <activity android:name=".PhoneAuthActivity"></activity>
-        <activity android:name=".PreferenceManager"></activity>
-        <activity android:name=".WelcomeActivity"></activity>
+       <activity android:name=".PhoneAuthActivity">
+
+       </activity>
+        <activity android:name=".PreferenceManager">
+
+        </activity>
+        <activity android:name=".WelcomeActivity">
+
+        </activity>
         <uses-permission android:name="android.permission."/>
  <activity
             android:name=".CreateGroup"

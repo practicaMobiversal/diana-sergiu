@@ -1,6 +1,8 @@
 package com.mobiversal.practica.proiectpractica.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mobiversal.practica.proiectpractica.GroupAdapter;
+import com.mobiversal.practica.proiectpractica.MainActivity;
 import com.mobiversal.practica.proiectpractica.MyAdapter;
 import com.mobiversal.practica.proiectpractica.R;
 
@@ -43,6 +47,23 @@ public class GroupFragments extends Fragment {
 
 
         prepareGroupData();
+
+        // TODO: Remove this
+        view.findViewById(R.id.btn_sign_out).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                }, 1000L);
+            }
+        });
 
         return view;
     }

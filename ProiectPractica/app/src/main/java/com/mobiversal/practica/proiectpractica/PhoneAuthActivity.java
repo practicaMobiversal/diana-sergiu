@@ -99,26 +99,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
         //get the username field string
 
-        mVerifyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Users").child("User");
-                String display_name = mNameField.getText().toString();
-                String display_number = mPhoneNumberField.getText().toString();
-
-                //creare obiect user
-                User user = new User(display_name, display_number);
-                user.setName(display_name);
-                user.setPhone(display_number);
-                myRef.child("Users").child("User").push().setValue(user);
-
-            }
-
-
-        });
-
         // Assign click listeners
         mStartButton.setOnClickListener(this);
         mVerifyButton.setOnClickListener(this);
@@ -279,6 +259,9 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                             // [START_EXCLUDE]
                             updateUI(STATE_SIGNIN_SUCCESS, user);
                             // [END_EXCLUDE]
+
+                            updateUserProfile();
+
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -297,6 +280,26 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 });
     }
     // [END sign_in_with_phone]
+
+    private void updateUserProfile() {
+        Log.d(TAG, "updateUserProfile()");
+
+        if (mAuth == null || mAuth.getCurrentUser() == null) {
+            Log.e(TAG, "The auth is null or current user is null!");
+            return;
+        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").push();
+        String displayName = mNameField.getText().toString();
+        String displayNumber = mPhoneNumberField.getText().toString();
+
+        //creare obiect user
+        User user = new User(displayName, displayNumber);
+        user.setUuid(mAuth.getCurrentUser().getUid());
+
+        myRef.setValue(user);
+    }
 
     private void signOut() {
         mAuth.signOut();
@@ -380,7 +383,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             mSignedInViews.setVisibility(View.VISIBLE);
 
             enableViews(mPhoneNumberField, mVerificationField);
-            mPhoneNumberField.setText(null);
             mVerificationField.setText(null);
 
             mStatusText.setText(R.string.signed_in);
