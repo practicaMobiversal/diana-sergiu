@@ -6,6 +6,7 @@ import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 private  static final String TAG="MainActivity";
     private ViewPager viewPager;
+    private ViewPagerAdapterMain viewPagerAdapterMain;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,22 +90,53 @@ private  static final String TAG="MainActivity";
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        viewPager = (ViewPager) findViewById( R.id.viewpager );
+        viewPagerAdapterMain = new ViewPagerAdapterMain( getSupportFragmentManager() );
+
+        viewPager.setAdapter( viewPagerAdapterMain );
+
+        tabLayout = (TabLayout) findViewById( R.id.tab_layout );
+        tabLayout.setupWithViewPager( viewPager );
+
         //Intent intent = new Intent (this, SecondActivity.class);
         //startActivity(intent);
 
-        populateViews();
+        //populateViews();
 
     }
 
 
-    private void populateViews(){
-        Fragment[] fragments = new Fragment[2];
-        fragments[0] = new GroupFragments();
-        fragments[1] = new ConversationFragments();
+//    private void populateViews(){
+//        Fragment[] fragments = new Fragment[2];
+//        fragments[0] = new GroupFragments();
+//        fragments[1] = new ConversationFragments();
+//
+//        ViewPagerAdapterMain adapter = new ViewPagerAdapterMain(getSupportFragmentManager(),fragments );
+//        viewPager.setAdapter(adapter);
+//
+//    }
 
-        ViewPagerAdapterMain adapter = new ViewPagerAdapterMain(getSupportFragmentManager(),fragments );
-        viewPager.setAdapter(adapter);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.menu_main,menu );
+        return super.onCreateOptionsMenu( menu );
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.add) {
+            Intent intent = new Intent(this, CreateGroup.class);
+            startActivity(intent);
+        }
+
+        if (id== R.id.remove){
+            Intent intent = new Intent( this, ViewProfill.class);
+            startActivity( intent );
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -118,6 +152,8 @@ private  static final String TAG="MainActivity";
         Intent intent = new Intent(this, ViewProfill.class);
         startActivity(intent);
     }
+
+
 
 
     @Override

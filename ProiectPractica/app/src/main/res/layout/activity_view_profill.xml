@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
@@ -9,19 +9,49 @@
               android:weightSum="1">
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.46"
-        app:srcCompat="@android:drawable/presence_busy"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/default_avatar"
+        android:id="@+id/circleImageView"/>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:id="@+id/profil_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.23"
-        android:text="TextView"
-        android:textAlignment="center"
-        tools:layout_marginTop="20dp"/>
-</LinearLayout>
+        android:layout_below="@+id/circleImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="Nume utilizator"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/profil_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Statul utilizator"
+        android:layout_below="@+id/profil_name"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/profil_b_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button4"
+        android:layout_below="@+id/profil_status"
+        android:layout_marginTop="37dp"
+        android:text="MODIFICATI IMAGINE"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODIFICATI STATUS"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/circleImageView"
+        android:layout_marginBottom="60dp"/>
+</RelativeLayout>
