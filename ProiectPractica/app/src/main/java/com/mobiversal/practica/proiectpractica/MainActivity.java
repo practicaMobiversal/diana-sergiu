@@ -29,7 +29,8 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-;import com.google.firebase.auth.FirebaseUserimport com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -45,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 private  static final String TAG="MainActivity";
 private ViewPagerAdapterMain viewPagerAdapterMain;
+    private ViewPager viewPager;
     private TabLayout tabLayout;private FirebaseAuth mAuth;    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message").child("2");
