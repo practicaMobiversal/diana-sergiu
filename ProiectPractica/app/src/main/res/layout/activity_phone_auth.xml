@@ -68,6 +68,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
+                    android:text="0753084115"
                     android:hint="@string/hint_phone_number"
                     android:inputType="phone" />
 
@@ -141,7 +142,8 @@
             android:layout_above="@+id/phone_auth_fields"
             android:layout_marginBottom="22dp"
             android:layout_marginStart="17dp"
-            android:layout_toEndOf="@+id/signed_in_buttons">
+            android:layout_toEndOf="@+id/signed_in_buttons"
+            android:id="@+id/textInputLayout">
 
             <EditText
                 android:id="@+id/username"

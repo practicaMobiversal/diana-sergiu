@@ -6,31 +6,38 @@ package com.mobiversal.practica.proiectpractica;
 
 public class User {
 
-    private String display_name;
-    private String display_phone;
+    private String uuid;
+    private String displayName;
+    private String displayPhone;
 
-    public User(String name, String phone_number){
+    public User(String displayName, String displayPhone){
 
-        this.display_name = name;
-        this.display_phone = phone_number;
+        this.displayName = displayName;
+        this.displayPhone = displayPhone;
 
     }
 
-
-    public String getDisplay_name() {
-        return display_name;
+    public String getUuid() {
+        return uuid;
     }
 
-    public String getDisplay_phone() {
-        return display_phone;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
-    public void setName(String name) {
-        this.display_name = name ;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setPhone(String phone_number){
-        this.display_phone = phone_number;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
+    public String getDisplayPhone() {
+        return displayPhone;
+    }
+
+    public void setDisplayPhone(String displayPhone) {
+        this.displayPhone = displayPhone;
+    }
 }
