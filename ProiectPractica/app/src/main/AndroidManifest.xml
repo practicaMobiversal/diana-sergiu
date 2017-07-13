@@ -25,7 +25,7 @@
         </activity>
  <activity android:name=".SecondActivity" />
         <activity
-            android:name=".DisplayMessageActivity"
+            android:name=".MyAdapter"
             android:parentActivityName=".MainActivity">
 
             <meta-data
@@ -42,6 +42,7 @@
         <activity android:name=".WelcomeActivity">
 
         </activity>
+
         <uses-permission android:name="android.permission."/>
  <activity
             android:name=".CreateGroup"
@@ -53,6 +54,8 @@
         
 
  
-<activity android:name=".ViewProfill"></activity>
+<activity android:name=".ViewProfill">
+
+</activity>
  </application>
 </manifest>

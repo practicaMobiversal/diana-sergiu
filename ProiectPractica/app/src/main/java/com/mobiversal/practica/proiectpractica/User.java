@@ -10,6 +10,7 @@ public class User {
     private String displayName;
     private String displayPhone;
 
+
     public User(String displayName, String displayPhone){
 
         this.displayName = displayName;

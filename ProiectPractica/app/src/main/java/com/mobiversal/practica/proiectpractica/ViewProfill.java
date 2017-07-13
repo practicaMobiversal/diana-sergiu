@@ -1,9 +1,8 @@
 package com.mobiversal.practica.proiectpractica;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 
 public class ViewProfill extends AppCompatActivity {
     @Override

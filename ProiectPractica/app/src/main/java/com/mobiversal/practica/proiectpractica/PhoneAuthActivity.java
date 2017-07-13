@@ -299,6 +299,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         user.setUuid(mAuth.getCurrentUser().getUid());
 
         myRef.setValue(user);
+        myRef.child("Image_url").setValue("Null");
     }
 
     private void signOut() {
