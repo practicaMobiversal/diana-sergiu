@@ -66,7 +66,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private Button mSignOutButton;
     private EditText mNameField;
     private FirebaseDatabase mRef;
-
+//749509
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +85,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         mSignedInViews = (ViewGroup) findViewById(R.id.signed_in_buttons);
 
         mStatusText = (TextView) findViewById(R.id.status);
-        mDetailText = (TextView) findViewById(R.id.detail);
+       // mDetailText = (TextView) findViewById(R.id.detail);
 
 
         mPhoneNumberField = (EditText) findViewById(R.id.field_phone_number);
@@ -289,19 +289,20 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             return;
         }
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").push();
         String displayName = mNameField.getText().toString();
         String displayNumber = mPhoneNumberField.getText().toString();
+        String displayStatus = mStatusText.getText().toString();
 
         //creare obiect user
-        User user = new User(displayName, displayNumber);
+        User user = new User(displayName, displayNumber, displayStatus,null, null);
         user.setUuid(mAuth.getCurrentUser().getUid());
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child( user.getUuid() );
         myRef.setValue(user);
         myRef.child("Image_url").setValue("Null");
     }
-
+//465808
     private void signOut() {
         mAuth.signOut();
         updateUI(STATE_INITIALIZED);
@@ -333,7 +334,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 // Initialized state, show only the phone number field and start button
                 enableViews(mStartButton, mPhoneNumberField, mNameField);
                 disableViews(mVerifyButton, mResendButton, mVerificationField);
-
                 break;
             case STATE_CODE_SENT:
                 // Code sent state, show the verification field, the
@@ -344,9 +344,9 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             case STATE_VERIFY_FAILED:
                 // Verification has failed, show all options
                 enableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
-                        mVerificationField, mNameField);
+  mVerificationField, mNameField);
                // mDetailText.setText(R.string.status_verification_failed);
-                break;
+                 break;
             case STATE_VERIFY_SUCCESS:
                 // Verification has succeeded, proceed to firebase sign in
                 disableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
