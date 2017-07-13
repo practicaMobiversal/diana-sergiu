@@ -21,4 +21,11 @@
         app:showAsAction="never"
         app:srcCompat="@android:drawable/ic_dialog_email"
         />
+
+    <item
+        android:id="@+id/users"
+        android:title="Utilizatori"
+        app:showAsAction="never"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        />
 </menu>

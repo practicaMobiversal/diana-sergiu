@@ -91,6 +91,12 @@ private ViewPagerAdapterMain viewPagerAdapterMain;
             Intent intent = new Intent( this, ViewProfill.class);
             startActivity( intent );
         }
+
+        if (id ==R.id.users)
+        {
+            Intent intent = new Intent( this, UsersActivity.class );
+            startActivity( intent );
+        }
         return super.onOptionsItemSelected(item);
     }
 
