@@ -12,12 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mobiversal.practica.proiectpractica.GroupAdapter;
 import com.mobiversal.practica.proiectpractica.MainActivity;
 import com.mobiversal.practica.proiectpractica.MyAdapter;
 import com.mobiversal.practica.proiectpractica.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,6 +33,8 @@ public class GroupFragments extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private MyAdapter mAdapter;
+    private DatabaseReference mDatabase;
+
 
     @Nullable
     @Override
@@ -48,27 +53,45 @@ public class GroupFragments extends Fragment {
         prepareGroupData();
 
         // TODO: Remove this
-        view.findViewById(R.id.btn_sign_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
-                }, 1000L);
-            }
-        });
+//        view.findViewById(R.id.btn_sign_out).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent intent = new Intent(getContext(), MainActivity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//                    }
+//                }, 1000L);
+//            }
+//        })
+;
 
         return view;
     }
 
 
     private void prepareGroupData() {
+
+       // mDatabase = FirebaseDatabase.getInstance().getReference().child( "groups" ).child( "public" ).push();
+
+
+//        HashMap<String,String> groupmap = new HashMap<>(  );
+//        groupmap.put( "name", "Oradea - Beius" );
+//        groupmap.put( "name", "Oradea - Bucuresti" );
+//
+//        mDatabase.setValue( groupmap );
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRefe = database.getReference("groups").child( "public" ).push();
+
+        myRefe.child( "name" ).setValue( "Oradea - Bucuresti" );
+        myRefe.child( "name" ).setValue( "Oradea - Beius" );
+        myRefe.child( "name" ).setValue( "Oradea - Cluj" );
+
         GroupAdapter g1 = new GroupAdapter("Oradea - Beius","S",null,null);
         groupsList.add(g1);
 

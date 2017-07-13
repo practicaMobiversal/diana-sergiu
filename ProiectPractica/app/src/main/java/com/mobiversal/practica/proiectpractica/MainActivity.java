@@ -2,6 +2,7 @@ package com.mobiversal.practica.proiectpractica;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
 import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
 import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
+
+import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -85,7 +90,6 @@ private ViewPagerAdapterMain viewPagerAdapterMain;
         if (id== R.id.remove){
             Intent intent = new Intent( this, ViewProfill.class);
             startActivity( intent );
-
         }
         return super.onOptionsItemSelected(item);
     }

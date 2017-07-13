@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Statul utilizator"
+        android:text="@string/sign_in"
         android:layout_below="@+id/profil_name"
         android:layout_centerHorizontal="true"/>
 
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MODIFICATI STATUS"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/profil_b_img"
         android:layout_alignStart="@+id/circleImageView"
-        android:layout_marginBottom="60dp"/>
+        android:layout_marginTop="11dp"/>
 </RelativeLayout>

@@ -66,7 +66,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private Button mSignOutButton;
     private EditText mNameField;
     private FirebaseDatabase mRef;
-
+//749509
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -289,18 +289,19 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             return;
         }
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").push();
         String displayName = mNameField.getText().toString();
         String displayNumber = mPhoneNumberField.getText().toString();
+        String displayStatus = mStatusText.getText().toString();
 
         //creare obiect user
-        User user = new User(displayName, displayNumber);
+        User user = new User(displayName, displayNumber, displayStatus,null, null);
         user.setUuid(mAuth.getCurrentUser().getUid());
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child( user.getUuid() );
         myRef.setValue(user);
     }
-
+//465808
     private void signOut() {
         mAuth.signOut();
         updateUI(STATE_INITIALIZED);
@@ -332,7 +333,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 // Initialized state, show only the phone number field and start button
                 enableViews(mStartButton, mPhoneNumberField, mNameField);
                 disableViews(mVerifyButton, mResendButton, mVerificationField);
-                mDetailText.setText(null);                break;
+                break;
             case STATE_CODE_SENT:
                 // Code sent state, show the verification field, the
                 enableViews(mVerifyButton, mResendButton, mPhoneNumberField, mVerificationField);
