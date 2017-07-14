@@ -307,6 +307,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users").child( user.getUuid() );
         myRef.setValue(user);
+        myRef.child("Image_url").setValue("Null");
     }
 //465808  106460
     private void signOut() {

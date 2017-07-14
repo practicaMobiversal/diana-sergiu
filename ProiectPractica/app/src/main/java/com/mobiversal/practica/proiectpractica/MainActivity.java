@@ -5,39 +5,34 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
+import com.google.firebase.database.ValueEventListener;
+import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
 import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
 import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
-
 import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-private  static final String TAG="MainActivity";
-private ViewPagerAdapterMain viewPagerAdapterMain;
+ private ViewPagerAdapterMain viewPagerAdapterMain;
+    private TabLayout tabLayout;
+    private FirebaseAuth mAuth;
     private ViewPager viewPager;
-    private TabLayout tabLayout;private FirebaseAuth mAuth;    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG , "onCreate");
         mAuth = FirebaseAuth.getInstance();
