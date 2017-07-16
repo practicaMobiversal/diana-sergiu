@@ -50,6 +50,13 @@
                     android:parentActivityName=".ViewProfill"
             >
         </activity>
+        <activity android:name=".ChatDialogActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
+
+
     </application>
 
 </manifest>

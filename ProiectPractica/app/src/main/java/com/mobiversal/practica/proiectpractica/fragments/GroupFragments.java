@@ -10,14 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mobiversal.practica.proiectpractica.GroupAdapter;
 import com.mobiversal.practica.proiectpractica.MyAdapter;
+import com.mobiversal.practica.proiectpractica.PublicGroup;
 import com.mobiversal.practica.proiectpractica.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,17 +27,19 @@ import java.util.List;
 
 public class GroupFragments extends Fragment {
 
-    private List<GroupAdapter> groupsList ;
+    private List<GroupAdapter> groupsList;
     private RecyclerView recyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private MyAdapter mAdapter;
     private DatabaseReference mDatabase;
 
 
+
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_grup, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_grup, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
         groupsList = new ArrayList<>();
@@ -45,56 +48,43 @@ public class GroupFragments extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mDatabase = database.getReference("Groups");
+
+        FirebaseRecyclerAdapter<PublicGroup, GroupsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<PublicGroup, GroupsViewHolder>(
+
+                PublicGroup.class,
+                R.layout.group_list_row,
+                GroupsViewHolder.class,
+                mDatabase
+        ) {
+
+            public GroupsViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+
+                GroupsViewHolder ViewHolder = super.onCreateViewHolder(parent, viewType);
+                return ViewHolder;
+            }
 
 
-        prepareGroupData();
+            protected void populateViewHolder(GroupsViewHolder viewHolder, PublicGroup model, int position) {
 
-        // TODO: Remove this
- view.findViewById(R.id.btn_sign_out).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Intent intent = new Intent(getContext(), MainActivity.class);
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(intent);
-//                    }
-//                }, 1000L);
-//            }
-//        })
-;
+                viewHolder.setName(model.getPublicGroupName());
+
+            }
+
+
+        };
+
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
+
         return view;
     }
 
 
-    private void prepareGroupData() {
 
-       // mDatabase = FirebaseDatabase.getInstance().getReference().child( "groups" ).child( "public" ).push();
-
-
-//        HashMap<String,String> groupmap = new HashMap<>(  );
-//        groupmap.put( "name", "Oradea - Beius" );
-//        groupmap.put( "name", "Oradea - Bucuresti" );
-//
-//        mDatabase.setValue( groupmap );
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRefe = database.getReference("groups").child( "public" ).push();
-
-        myRefe.child( "name" ).setValue( "Oradea - Bucuresti" );
-        myRefe.child( "name" ).setValue( "Oradea - Beius" );
-        myRefe.child( "name" ).setValue( "Oradea - Cluj" );
-
-        GroupAdapter g1 = new GroupAdapter("Oradea - Beius","S",null,null);
-        groupsList.add(g1);
-
-        g1 = new GroupAdapter();
-        groupsList.add(g1);
-        mAdapter.notifyDataSetChanged();
+    public void onStart() {
+        super.onStart();
     }
-
 
 }

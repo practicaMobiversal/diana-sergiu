@@ -48,4 +48,12 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="FriendlyButtonStyle" parent="Widget.AppCompat.Button">
+    <item name="android:textColor">@color/colorTitle</item>
+
+    </style>
+
+
+
+
 </resources>

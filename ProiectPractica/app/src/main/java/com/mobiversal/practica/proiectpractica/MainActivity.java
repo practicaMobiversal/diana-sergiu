@@ -2,7 +2,6 @@ package com.mobiversal.practica.proiectpractica;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,29 +11,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
-import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
-import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
-import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
  private ViewPagerAdapterMain viewPagerAdapterMain;
+    private static final String TAG = "MainActivity";
     private TabLayout tabLayout;
     private FirebaseAuth mAuth;
     private ViewPager viewPager;
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG , "onCreate");
+
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main);
 
@@ -48,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById( R.id.tab_layout );
         tabLayout.setupWithViewPager( viewPager );
+
 
         //Intent intent = new Intent (this, SecondActivity.class);
         //startActivity(intent);
@@ -97,11 +91,15 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
+    public void gotoChatRoom(View view){
+        Intent intent = new Intent (this, ChatDialogActivity.class);
+        ImageButton btn = (ImageButton) findViewById(R.id.imageButton2) ;
+        startActivity(intent);
+    }
  public void ViewProfil(View view){
         Intent intent = new Intent(this, ViewProfill.class);
         startActivity(intent);
- }    @Override
+ }
 
 
 

@@ -5,19 +5,24 @@ package com.mobiversal.practica.proiectpractica;
  */
 
 
-        import android.support.v7.widget.RecyclerView;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageButton;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import java.util.List;
+import java.util.List;
+
+
+
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private List<GroupAdapter> groupsList;
+    private Button btn;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -29,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             nr_util = (TextView) view.findViewById(R.id.genre);
-            imageButton = (ImageButton) view.findViewById( R.id.imageButton2 );
+            imageButton = (ImageButton) view.findViewById(R.id.imageButton2);
             imageView  = (ImageView) view.findViewById( R.id.imageView8 );
 
 
@@ -47,8 +52,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.group_list_row, parent, false);
 
+            //imageButton2 =
+
         return new MyViewHolder(itemView);
     }
+
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {

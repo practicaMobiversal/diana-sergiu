@@ -17,11 +17,4 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/btn_sign_out"
-        android:layout_width="wrap_content"
-        android:text="SIGN OUT"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content" />
-
 </RelativeLayout>

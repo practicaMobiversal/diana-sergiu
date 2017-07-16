@@ -13,6 +13,9 @@ public class User {
     private String image;
     private String thumb_image;
 
+    public User(){
+
+    }
 
     public User(String displayName, String displayPhone, String status,String image, String thumb_image){
 

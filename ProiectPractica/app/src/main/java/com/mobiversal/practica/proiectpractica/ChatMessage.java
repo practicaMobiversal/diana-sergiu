@@ -1,7 +1,5 @@
 package com.mobiversal.practica.proiectpractica;
 
-import java.util.Date;
-
 /**
  * Created by Lenovo on 08.07.2017.
  */
@@ -12,39 +10,40 @@ public class ChatMessage {
     private String messageUser;
     private long messageTime;
 
-    public ChatMessage(String messageText, String messageUser) {
-        this.messageText = messageText;
-        this.messageUser = messageUser;
+    private String text;
+    private String name;
+    private String photoUrl;
 
-        // Initialize to current time
-        messageTime = new Date().getTime();
+    public ChatMessage() {
     }
 
-    public ChatMessage(){
-
+    public ChatMessage(String text, String name, String photoUrl) {
+        this.text = text;
+        this.name = name;
+        this.photoUrl = photoUrl;
     }
 
-    public String getMessageText() {
-        return messageText;
+    public String getText() {
+        return text;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getMessageUser() {
-        return messageUser;
+    public String getName() {
+        return name;
     }
 
-    public void setMessageUser(String messageUser) {
-        this.messageUser = messageUser;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getMessageTime() {
-        return messageTime;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setMessageTime(long messageTime) {
-        this.messageTime = messageTime;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

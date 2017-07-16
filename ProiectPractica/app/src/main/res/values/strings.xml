@@ -95,5 +95,7 @@
     <string name="email_fmt">Email: %s</string>
     <string name="username">Nume</string>
 
+    <string name="send_button_label">Send</string>
+
     //-end phone auth
 </resources>

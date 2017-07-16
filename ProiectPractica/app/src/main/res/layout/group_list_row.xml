@@ -32,6 +32,7 @@
         android:layout_alignBottom="@+id/genre"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:onClick="gotoChatRoom"
         app:srcCompat="@android:drawable/ic_menu_add"/>
 
     <ImageView

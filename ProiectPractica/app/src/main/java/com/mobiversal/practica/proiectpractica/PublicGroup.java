@@ -6,13 +6,16 @@ package com.mobiversal.practica.proiectpractica;
 
 public class PublicGroup {
     private String uuid;
-    private String PublicGroupName;
+    private String publicGroupName;
     private String userName;
     private String phoneNumber;
 
-    public PublicGroup(String PublicGroupName, String userName, String phoneNumber)
+    public PublicGroup(){
+
+    }
+    public PublicGroup(String publicGroupName, String userName, String phoneNumber)
     {
-        this.PublicGroupName = PublicGroupName;
+        this.publicGroupName = publicGroupName;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
 
@@ -27,11 +30,11 @@ public class PublicGroup {
     }
 
     public String getPublicGroupName() {
-        return PublicGroupName;
+        return publicGroupName;
     }
 
     public void setPublicGroupName(String PublicGroupName) {
-        this.PublicGroupName = PublicGroupName;
+        this.publicGroupName = PublicGroupName;
     }
 
 }
