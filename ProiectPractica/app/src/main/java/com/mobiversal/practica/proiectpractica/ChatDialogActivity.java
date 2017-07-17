@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,7 +41,7 @@ public class ChatDialogActivity extends AppCompatActivity {
     private String mUsername;
 
     private DatabaseReference mMessagesDatabaseReference;
-    private ChildEventListener 
+    private ChildEventListener mChildEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,12 @@ public class ChatDialogActivity extends AppCompatActivity {
 
         mUsername = ANONYMOUS;
 
+        String groupId = getIntent().getExtras().getString("groupId");
+
         FirebaseDatabase mFireBaseDatabase = FirebaseDatabase.getInstance();
-        mMessagesDatabaseReference = mFireBaseDatabase.getReference().child("Messages").push();
+        mMessagesDatabaseReference = mFireBaseDatabase.getReference()
+                .child("Messages").child(groupId);
+        // mMessagesDatabaseReference.keepSynced(true);
 
         // Initialize references to views
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -61,6 +67,7 @@ public class ChatDialogActivity extends AppCompatActivity {
         // Initialize message ListView and its adapter
         List<ChatMessage> friendlyMessages = new ArrayList<>();
         mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
+        mMessageAdapter.setNotifyOnChange(true);
         mMessageListView.setAdapter(mMessageAdapter);
 
 
@@ -104,13 +111,46 @@ public class ChatDialogActivity extends AppCompatActivity {
                 // TODO: Send messages on click
 
                 ChatMessage chatMessage = new ChatMessage(mMessageEditText.getText().toString(), mUsername, null);
-                mMessagesDatabaseReference.setValue(chatMessage);
+                mMessagesDatabaseReference.push().setValue(chatMessage);
 
 
                 // Clear input box
                 mMessageEditText.setText("");
             }
         });
+
+        mChildEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                ChatMessage chatMessage = dataSnapshot.getValue(ChatMessage.class);
+                mMessageAdapter.add(chatMessage);
+                mMessageAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
     }
 
     @Override

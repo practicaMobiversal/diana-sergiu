@@ -6,9 +6,6 @@ package com.mobiversal.practica.proiectpractica;
 
 public class ChatMessage {
 
-    private String messageText;
-    private String messageUser;
-    private long messageTime;
 
     private String text;
     private String name;

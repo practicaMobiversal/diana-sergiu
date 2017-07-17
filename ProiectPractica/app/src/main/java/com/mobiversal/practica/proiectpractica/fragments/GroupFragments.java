@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class GroupFragments extends Fragment {
     private MyAdapter mAdapter;
     private DatabaseReference mDatabase;
 
+    private FirebaseRecyclerAdapter<PublicGroup, GroupsViewHolder> firebaseRecyclerAdapter;
 
 
 
@@ -50,9 +52,9 @@ public class GroupFragments extends Fragment {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setHasFixedSize(true);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        mDatabase = database.getReference("Groups");
+        mDatabase = database.getReference("Groups").child("Public");
 
-        FirebaseRecyclerAdapter<PublicGroup, GroupsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<PublicGroup, GroupsViewHolder>(
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<PublicGroup, GroupsViewHolder>(
 
                 PublicGroup.class,
                 R.layout.group_list_row,
@@ -62,15 +64,15 @@ public class GroupFragments extends Fragment {
 
             public GroupsViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
 
-                GroupsViewHolder ViewHolder = super.onCreateViewHolder(parent, viewType);
-                return ViewHolder;
+                return super.onCreateViewHolder(parent, viewType);
             }
 
 
             protected void populateViewHolder(GroupsViewHolder viewHolder, PublicGroup model, int position) {
-
+                Log.i("GroupFragments", "Populate view holder " + position + " with " + model);
+                View imageView = viewHolder.itemView.findViewById(R.id.imageButton2);
+                imageView.setTag(firebaseRecyclerAdapter.getRef(position).getKey());
                 viewHolder.setName(model.getPublicGroupName());
-
             }
 
 

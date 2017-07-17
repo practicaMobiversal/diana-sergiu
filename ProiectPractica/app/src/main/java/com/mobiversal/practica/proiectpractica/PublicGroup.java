@@ -5,36 +5,29 @@ package com.mobiversal.practica.proiectpractica;
  */
 
 public class PublicGroup {
-    private String uuid;
     private String publicGroupName;
-    private String userName;
-    private String phoneNumber;
 
     public PublicGroup(){
 
     }
-    public PublicGroup(String publicGroupName, String userName, String phoneNumber)
+    public PublicGroup(String publicGroupName)
     {
         this.publicGroupName = publicGroupName;
-        this.userName = userName;
-        this.phoneNumber = phoneNumber;
 
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     public String getPublicGroupName() {
         return publicGroupName;
     }
 
-    public void setPublicGroupName(String PublicGroupName) {
-        this.publicGroupName = PublicGroupName;
+    public void setPublicGroupName(String publicGroupName) {
+        this.publicGroupName = publicGroupName;
     }
 
+    @Override
+    public String toString() {
+        return "PublicGroup{" +
+                "publicGroupName='" + publicGroupName + '\'' +
+                '}';
+    }
 }

@@ -11,10 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
 
 
@@ -25,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private FirebaseAuth mAuth;
     private ViewPager viewPager;
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mMessagesDatabaseReference;
+
+
     @Override    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById( R.id.tab_layout );
         tabLayout.setupWithViewPager( viewPager );
+
 
 
         //Intent intent = new Intent (this, SecondActivity.class);
@@ -93,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void gotoChatRoom(View view){
         Intent intent = new Intent (this, ChatDialogActivity.class);
-        ImageButton btn = (ImageButton) findViewById(R.id.imageButton2) ;
+        String groupId = (String) view.getTag();
+        intent.putExtra("groupId", groupId);
         startActivity(intent);
     }
  public void ViewProfil(View view){
