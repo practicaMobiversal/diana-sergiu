@@ -60,6 +60,9 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private EditText mPhoneNumberField;
     private EditText mVerificationField;
 
+    private String mImage;
+    private String mThoumb_image;
+
     private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
@@ -295,8 +298,12 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         String displayNumber = mPhoneNumberField.getText().toString();
         String displayStatus = mStatusText.getText().toString();
 
+        mImage = "default";
+        mThoumb_image = "Default";
+
+
         //creare obiect user
-        User user = new User(displayName, displayNumber, displayStatus,null, null);
+        User user = new User(displayName, displayNumber, displayStatus,mImage, mThoumb_image);
         user.setUuid(mAuth.getCurrentUser().getUid());
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -304,7 +311,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         myRef.setValue(user);
         myRef.child("Image_url").setValue("Null");
     }
-//465808
+//465808  106460
     private void signOut() {
         mAuth.signOut();
         updateUI(STATE_INITIALIZED);

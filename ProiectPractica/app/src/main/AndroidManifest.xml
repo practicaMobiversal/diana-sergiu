@@ -46,9 +46,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
-        <activity android:name=".StatusActivity"
-                    android:parentActivityName=".ViewProfill"
-            >
+        <activity
+            android:name=".StatusActivity"
+            android:parentActivityName=".ViewProfill">
+        </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
+        <activity
+            android:name=".UsersActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".ProfilActivity">
         </activity>
         <activity android:name=".ChatDialogActivity"
             android:parentActivityName=".MainActivity"
