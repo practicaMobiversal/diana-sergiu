@@ -23,6 +23,10 @@ public class PreferenceManager extends AppCompatActivity {
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
+    public PreferenceManager(){
+
+    }
+
     public PreferenceManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

@@ -49,22 +49,21 @@ public class CreateGroup extends AppCompatActivity {
 
 
 
-               String GroupName = mCreateGroup.getText().toString();
+               String groupName = mCreateGroup.getText().toString();
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Groups").child("Public").push();
                 mAuth1 = FirebaseAuth.getInstance().getCurrentUser();
-                String userName = mAuth1.getDisplayName();
-                String phoneNumber = mAuth1.getPhoneNumber();
+                // String userName = mAuth1.getDisplayName();
+                // String phoneNumber = mAuth1.getPhoneNumber();
                // groupUser = FirebaseDatabase.getInstance().getReference().child("users").child(current_id).child(phoneNumber);
                // userPhoneNumber
 
-               // groupUser.setValue(current_id, GroupName, );
+               // groupUser.setValue(current_id, groupName, );
 
 
                 //creare obiect de tip grup
-               Groups grup = new Groups();
-                myRef.setValue(grup);
+ PublicGroup grup = new PublicGroup(groupName);                myRef.setValue(grup);
 
 
             }
