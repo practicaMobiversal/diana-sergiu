@@ -27,5 +27,7 @@
         android:title="Utilizatori"
         app:showAsAction="never"
         app:srcCompat="@android:drawable/ic_dialog_email"
+        android:actionViewClass="android.widget.SearchView"
+
         />
 </menu>

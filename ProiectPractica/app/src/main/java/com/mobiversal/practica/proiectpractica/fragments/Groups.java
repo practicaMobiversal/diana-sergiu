@@ -1,21 +1,17 @@
-package com.mobiversal.practica.proiectpractica;
-
-import android.media.Image;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+package com.mobiversal.practica.proiectpractica.fragments;
 
 /**
- * Created by Lenovo on 10.07.2017.
+ * Created by Lenovo on 14.07.2017.
  */
 
-public class GroupAdapter {
+public class Groups {
 
     private String publicGroupName, nr_util, imageButton, imageView;
 
-    public GroupAdapter() {
+    public Groups() {
     }
 
-    public GroupAdapter(String publicGroupName, String nr_util,String imageButton, String imageView) {
+    public Groups(String publicGroupName, String nr_util,String imageButton, String imageView) {
         this.publicGroupName = publicGroupName;
         this.nr_util=nr_util;
         this.imageButton=imageButton;
@@ -23,12 +19,12 @@ public class GroupAdapter {
 
     }
 
-    public String getPublicGroupName() {
+    public String getpublicGroupName() {
         return publicGroupName;
     }
 
-    public void setPublicGroupName(String name) {
-        this.publicGroupName = name;
+    public void setPublicGroupName(String publicGroupName) {
+        this.publicGroupName = publicGroupName;
     }
 
     public String getImageButton() {
@@ -52,6 +48,6 @@ public class GroupAdapter {
     }
     public void setNr_util(String numar){
         this.nr_util=numar;
-}
+    }
 
 }

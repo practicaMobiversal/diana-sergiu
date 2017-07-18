@@ -1,18 +1,25 @@
 package com.mobiversal.practica.proiectpractica;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,11 +30,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.mobiversal.practica.proiectpractica.adapters.ViewPagerAdapterMain;
 import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
 import com.mobiversal.practica.proiectpractica.fragments.GroupFragments;
+
+import io.reactivex.internal.schedulers.NewThreadScheduler;
+
 import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String TAG = "Proiect practica";
  private ViewPagerAdapterMain viewPagerAdapterMain;
     private TabLayout tabLayout;
     private FirebaseAuth mAuth;
@@ -54,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         //populateViews();
 
+
     }
 
 
@@ -70,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate( R.menu.menu_main,menu );
+        MenuItem searchItem = menu.findItem( R.id.users );
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView( searchItem );
+
+
         return super.onCreateOptionsMenu( menu );
 
     }
@@ -89,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (id ==R.id.users)
         {
+
+
             Intent intent = new Intent( this, UsersActivity.class );
             startActivity( intent );
         }

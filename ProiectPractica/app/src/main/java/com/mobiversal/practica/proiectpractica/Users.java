@@ -9,6 +9,7 @@ public class Users {
     public String displayName;
     public String image;
     public String status;
+    public String thumb_image;
 
     public String getThumb_image() {
         return thumb_image;
@@ -17,8 +18,6 @@ public class Users {
     public void setThumb_image(String thumb_image) {
         this.thumb_image = thumb_image;
     }
-
-    public String thumb_image;
 
     public Users(){
 
