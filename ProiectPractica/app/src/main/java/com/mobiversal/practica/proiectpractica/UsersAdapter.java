@@ -40,9 +40,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.MyViewHolder
         holder.name.setText( users.getDisplayName() );
         holder.status.setText( users.getStatus() );
         holder.image.setImageResource( R.drawable.default_avatar );
-        if (holder.image.equals( "default" )) {
+        if (!holder.image.equals( "default" )) {
 
-            Picasso.with(context ).load( users.getThumb_image() ).placeholder( R.drawable.default_avatar ).into( holder.image );
+            Picasso.with( holder.image.getContext() ).load( users.getThumb_image() ).placeholder( R.drawable.default_avatar ).into( holder.image );
         }
 
 

@@ -34,12 +34,12 @@ import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    public static final String TAG = "Proiect practica";
  private ViewPagerAdapterMain viewPagerAdapterMain;
     private static final String TAG = "MainActivity";
     private TabLayout tabLayout;
     private FirebaseAuth mAuth;
     private ViewPager viewPager;
+    private MyAdapter mAdapter;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mMessagesDatabaseReference;
@@ -86,10 +86,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate( R.menu.menu_main,menu );
-        MenuItem searchItem = menu.findItem( R.id.users );
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView( searchItem );
-
-
         return super.onCreateOptionsMenu( menu );
 
     }
@@ -125,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-    public void gotoChatRoom(View view){
-        Intent intent = new Intent (this, ChatDialogActivity.class);
-        String groupId = (String) view.getTag();
-        intent.putExtra("groupId", groupId);
-        startActivity(intent);
-    }
+//    public void gotoChatRoom(View view){
+//        Intent intent = new Intent (this, ChatDialogActivity.class);
+//        String groupId = (String) view.getTag();
+//        intent.putExtra("groupId", groupId);
+//        startActivity(intent);
+//    }
  public void ViewProfil(View view){
         Intent intent = new Intent(this, ViewProfill.class);
         startActivity(intent);

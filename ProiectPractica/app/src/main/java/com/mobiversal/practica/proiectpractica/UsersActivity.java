@@ -62,6 +62,7 @@ public class UsersActivity extends AppCompatActivity {
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Users user = userSnapshot.getValue( Users.class );
                     items.add(user);
+
                 }
 
                 mAdapter = new UsersAdapter( items );
@@ -71,18 +72,20 @@ public class UsersActivity extends AppCompatActivity {
                 llManager.setOrientation( LinearLayoutManager.VERTICAL );
                 mUsersList.setLayoutManager( new LinearLayoutManager( UsersActivity.this ) );
                 mUsersList.setAdapter( mAdapter );
+
+
+
+
             }
+
+
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         } );
-
-
-
-
-
 
         editText = (EditText) findViewById( R.id.searchusers );
 
@@ -109,6 +112,8 @@ public class UsersActivity extends AppCompatActivity {
 
 
     }
+
+
     public void doSearch(String queryStr) {
         queryStr = queryStr.toLowerCase( Locale.getDefault() );
 
