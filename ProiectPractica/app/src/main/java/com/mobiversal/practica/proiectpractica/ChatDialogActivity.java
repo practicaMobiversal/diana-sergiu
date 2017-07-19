@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +39,11 @@ public class ChatDialogActivity extends AppCompatActivity {
     private EditText mMessageEditText;
     private Button mSendButton;
 
+
     private String mUsername;
 
     private DatabaseReference mMessagesDatabaseReference;
+    private DatabaseReference mUsernameDatabaseReference;
     private ChildEventListener mChildEventListener;
 
     @Override
@@ -48,11 +51,14 @@ public class ChatDialogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatmessage);
 
-        mUsername = ANONYMOUS;
+
+       // mUsername = ANONYMOUS;
 
         String groupId = getIntent().getExtras().getString("groupId");
 
-        FirebaseDatabase mFireBaseDatabase = FirebaseDatabase.getInstance();
+        final FirebaseDatabase mFireBaseDatabase = FirebaseDatabase.getInstance();
+        mUsernameDatabaseReference = mFireBaseDatabase.getReference().child("users").child("displayName");
+
         mMessagesDatabaseReference = mFireBaseDatabase.getReference()
                 .child("Messages").child(groupId);
         // mMessagesDatabaseReference.keepSynced(true);
@@ -110,14 +116,41 @@ public class ChatDialogActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO: Send messages on click
 
-                ChatMessage chatMessage = new ChatMessage(mMessageEditText.getText().toString(), mUsername, null);
-                mMessagesDatabaseReference.push().setValue(chatMessage);
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference myRef = database.getReference("users");
+//                myRef.orderByChild("name").addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                        for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+//                            Log.d(TAG, "PARENT: "+ childDataSnapshot.getKey());
+//                            Log.d(TAG,""+ childDataSnapshot.child("name").getValue());
+//                        }
+                mUsernameDatabaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        String userName = (String) dataSnapshot.getValue(String.class);
+                        ChatMessage chatMessage = new ChatMessage(mMessageEditText.getText().toString(), userName, null, true);
+                        mMessagesDatabaseReference.push().setValue(chatMessage);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+//                ChatMessage chatMessage = new ChatMessage(mMessageEditText.getText().toString(), userName, null, true);
+//                mMessagesDatabaseReference.push().setValue(chatMessage);
+
 
 
                 // Clear input box
                 mMessageEditText.setText("");
             }
-        });
+
+
+                });
 
         mChildEventListener = new ChildEventListener() {
             @Override

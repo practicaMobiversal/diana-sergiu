@@ -63,7 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         GroupAdapter group = groupsList.get(position);
         holder.title.setText(group.getTitle());
         holder.nr_util.setText( group.getNr_util() );
-        holder.imageView.setImageResource( R.drawable.arrow_bg1 );
+        holder.imageView.setImageResource( R.drawable.publicgroup );
 
     }
 
