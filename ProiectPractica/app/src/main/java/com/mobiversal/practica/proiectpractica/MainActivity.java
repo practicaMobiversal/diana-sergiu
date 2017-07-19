@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-//    public void gotoChatRoom(View view){
-//        Intent intent = new Intent (this, ChatDialogActivity.class);
-//        String groupId = (String) view.getTag();
-//        intent.putExtra("groupId", groupId);
-//        startActivity(intent);
-//    }
+    public void gotoChatRoom(View view){
+        Intent intent = new Intent (this, ChatDialogActivity.class);
+        String groupId = (String)  view.getTag();
+        intent.putExtra("groupId", groupId);
+        startActivity(intent);
+    }
  public void ViewProfil(View view){
         Intent intent = new Intent(this, ViewProfill.class);
         startActivity(intent);
