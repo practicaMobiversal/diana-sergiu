@@ -6,9 +6,9 @@
         android:id="@+id/search"
         android:title="search"
         app:showAsAction="always"
-        android:icon="@drawable/search3"
-        android:actionViewClass="android.widget.SearchView"
-        />
+		ndroid:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"        />
+
 
     <item
         android:id="@+id/add"
@@ -27,5 +27,7 @@
         android:title="Utilizatori"
         app:showAsAction="never"
         app:srcCompat="@android:drawable/ic_dialog_email"
+        android:actionViewClass="android.widget.SearchView"
+
         />
 </menu>

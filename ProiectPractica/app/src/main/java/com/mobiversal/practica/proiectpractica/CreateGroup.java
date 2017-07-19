@@ -10,7 +10,10 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;public class CreateGroup extends AppCompatActivity {
+import com.google.firebase.database.FirebaseDatabase;
+import com.mobiversal.practica.proiectpractica.fragments.Groups;
+
+public class CreateGroup extends AppCompatActivity {
     private EditText mCreateGroup;
     private Button mAddGroup;
     private EditText mNameField;
@@ -33,7 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;public class CreateGroup ex
         setContentView(R.layout.activity_create_group);
         Intent intent = getIntent();
 
-mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         mAddGroup = (Button) findViewById(R.id.button2);
         mCreateGroup = (EditText) findViewById(R.id.editText2);
 
@@ -60,8 +63,7 @@ mAuth = FirebaseAuth.getInstance();
 
 
                 //creare obiect de tip grup
-               PublicGroup grup = new PublicGroup(groupName);
-                myRef.setValue(grup);
+ PublicGroup grup = new PublicGroup(groupName);                myRef.setValue(grup);
 
 
             }

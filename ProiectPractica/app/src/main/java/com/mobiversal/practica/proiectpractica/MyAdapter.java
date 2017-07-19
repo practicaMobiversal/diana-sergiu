@@ -14,14 +14,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobiversal.practica.proiectpractica.fragments.Groups;
+
 import java.util.List;
-
-
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private List<GroupAdapter> groupsList;
+    private List<PublicGroup> groupsList;
     private Button btn;
 
 
@@ -32,7 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
+            title = (TextView) view.findViewById(R.id.title );
             nr_util = (TextView) view.findViewById(R.id.genre);
             imageButton = (ImageButton) view.findViewById(R.id.imageButton2);
             imageView  = (ImageView) view.findViewById( R.id.imageView8 );
@@ -43,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 
-    public MyAdapter(List<GroupAdapter>groupsList) {
+    public MyAdapter(List<PublicGroup> groupsList) {
         this.groupsList = groupsList;
     }
 
@@ -60,9 +60,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        GroupAdapter group = groupsList.get(position);
-        holder.title.setText(group.getTitle());
-        holder.nr_util.setText( group.getNr_util() );
+        PublicGroup group = groupsList.get( position );
+        holder.title.setText(group.getPublicGroupName());
         holder.imageView.setImageResource( R.drawable.publicgroup );
 
     }

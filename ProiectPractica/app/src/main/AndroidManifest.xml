@@ -62,11 +62,10 @@
         </activity>
         <activity android:name=".ProfilActivity">
         </activity>
-        <activity android:name=".ChatDialogActivity"
+ <activity android:name=".ChatDialogActivity"
             android:parentActivityName=".MainActivity"
             >
         </activity>
-
 
 
     </application>
