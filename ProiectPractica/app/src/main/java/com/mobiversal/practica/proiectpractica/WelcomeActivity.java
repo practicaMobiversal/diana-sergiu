@@ -30,7 +30,16 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slide_screen);
         mRegBtn = (Button) findViewById(R.id.button4);
+        mRegBtn2 = (Button) findViewById(R.id.button4);
         mRegBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent reg_intent = new Intent(WelcomeActivity.this, PhoneAuthActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(reg_intent);
+            }
+        });
+
+        mRegBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent reg_intent = new Intent(WelcomeActivity.this, PhoneAuthActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

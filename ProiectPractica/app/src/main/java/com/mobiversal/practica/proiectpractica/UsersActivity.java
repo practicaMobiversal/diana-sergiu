@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,8 +42,13 @@ public class UsersActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private EditText editText;
     private UsersAdapter mAdapter;
+    private DatabaseReference mUserDatabase;
+    private FirebaseAuth mAuth;
     private FirebaseDatabase mFirebase;
     private FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter;
+
+    private String mCurrent_userId;
+    private View mMainView;
 
 
     @Override
@@ -56,11 +62,17 @@ public class UsersActivity extends AppCompatActivity {
         mDatabaseReference = database.getReference().child( "users" );
       // mDatabaseReference = FirebaseDatabase.getInstance().getReference().child( "users" );
 
+
+        mAuth = FirebaseAuth.getInstance();
+        mCurrent_userId = mAuth.getCurrentUser().getUid();
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child( "users" );
+
         mDatabaseReference.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Users user = userSnapshot.getValue( Users.class );
+                    user.setId( userSnapshot.getKey() );
                     items.add(user);
 
                 }
@@ -72,9 +84,6 @@ public class UsersActivity extends AppCompatActivity {
                 llManager.setOrientation( LinearLayoutManager.VERTICAL );
                 mUsersList.setLayoutManager( new LinearLayoutManager( UsersActivity.this ) );
                 mUsersList.setAdapter( mAdapter );
-
-
-
 
             }
 
@@ -111,6 +120,13 @@ public class UsersActivity extends AppCompatActivity {
         } );
 
 
+    }
+
+    public void gotoProfil(View view){
+        Intent intent = new Intent (this, ProfilActivity.class);
+        String users_id =  (String) view.getTag();
+        intent.putExtra("users_id", users_id);
+        startActivity(intent);
     }
 
 

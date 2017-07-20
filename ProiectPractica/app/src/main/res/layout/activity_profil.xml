@@ -40,6 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/profil_displayName"
         android:layout_alignParentBottom="true"
+        android:onClick="CreatePrivatGroup"
+        tools:onClick="CreatePrivatGroup"
         android:layout_marginBottom="59dp"
         android:text="Invita"/>
 </RelativeLayout>

@@ -5,6 +5,7 @@ package com.mobiversal.practica.proiectpractica;
  */
 
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,8 +37,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             imageButton = (ImageButton) view.findViewById(R.id.imageButton2);
             imageView  = (ImageView) view.findViewById( R.id.imageView8 );
 
-
-
         }
     }
 
@@ -51,7 +50,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.group_list_row, parent, false);
 
-            //imageButton2 =
 
         return new MyViewHolder(itemView);
     }
@@ -67,7 +65,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View imageView = holder.itemView.findViewById(R.id.imageButton2);
         imageView.setTag(group.getPublicGroupName());
         holder.title.setText(group.getPublicGroupName());
-
     }
 
     @Override

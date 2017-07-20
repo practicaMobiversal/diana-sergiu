@@ -1,57 +1,73 @@
 package com.mobiversal.practica.proiectpractica;
 
 import android.media.Image;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.mobiversal.practica.proiectpractica.fragments.*;
+
+import java.util.List;
 
 /**
  * Created by Lenovo on 10.07.2017.
  */
 
-public class GroupAdapter {
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder> {
 
-    private String publicGroupName, nr_util, imageButton, imageView;
-
-    public GroupAdapter() {
+    private List<PrivatGroup> groupsPList;
+    private Button btn;
+     public GroupAdapter(List<PrivatGroup> groupsPList) {
+        this.groupsPList = groupsPList;
     }
 
-    public GroupAdapter(String publicGroupName, String nr_util,String imageButton, String imageView) {
-        this.publicGroupName = publicGroupName;
-        this.nr_util=nr_util;
-        this.imageButton=imageButton;
-        this.imageView=imageView;
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from( parent.getContext() )
+                .inflate( R.layout.group_list_vieww, parent, false );
+
+        return new GroupAdapter.MyViewHolder( itemView );
+    }
+
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        PrivatGroup group = groupsPList.get( position );
+        holder.groupNameView.setText( group.getPrivatGroupName() );
+
+
+        Log.i( "ConversationFragments", "Populate view holder " + position );
+        View imageView = holder.itemView.findViewById( R.id.group_privat_title );
+        imageView.setTag( group.getPrivatGroupName() );
+        holder.groupNameView.setText( group.getPrivatGroupName() );
 
     }
 
-    public String getPublicGroupName() {
-        return publicGroupName;
+    @Override
+    public int getItemCount() {
+        return groupsPList.size();
     }
 
-    public void setPublicGroupName(String name) {
-        this.publicGroupName = name;
-    }
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    public String getImageButton() {
-        return imageButton;
-    }
+        TextView groupNameView;
 
-    public String getImageView() {
-        return imageView;
-    }
+        public MyViewHolder(View itemView) {
+            super( itemView );
+            groupNameView = (TextView) itemView.findViewById( R.id.group_privat_title );
 
-    public void setImageButton(String imageButton) {
-        this.imageButton = imageButton;
-    }
+        }
 
-    public void setImageView(String imageView) {
-        this.imageView = imageView;
-    }
+        public void setName(String privatGroupName) {
+            groupNameView.setText( privatGroupName );
+        }
 
-    public String getNr_util() {
-        return nr_util;
     }
-    public void setNr_util(String numar){
-        this.nr_util=numar;
-}
-
 }

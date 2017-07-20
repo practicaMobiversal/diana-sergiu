@@ -1,8 +1,11 @@
 package com.mobiversal.practica.proiectpractica;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,9 +33,11 @@ public class ProfilActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_profil );
 
-        String user_id = getIntent().getStringExtra( "user_id" );
 
-        mUsersDatabasee = FirebaseDatabase.getInstance().getReference().child( "users" ).child( user_id );
+        final String users_id = getIntent().getStringExtra( "users_id" );
+
+
+        mUsersDatabasee = FirebaseDatabase.getInstance().getReference().child( "users" ).child( users_id );
 
 
         mProfilImage = (ImageView) findViewById( R.id.profil_image);
@@ -46,13 +51,13 @@ public class ProfilActivity extends AppCompatActivity {
         mProgressDialog.setCanceledOnTouchOutside( false );
         mProgressDialog.show();
 
+
         mUsersDatabasee.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                String display_name  = dataSnapshot.child( "displayName" ).getValue().toString();
-                String status = dataSnapshot.child( "status" ).getValue().toString();
-                String image = dataSnapshot.child( "image" ).getValue().toString();
+                String display_name  = (String) dataSnapshot.child( "displayName" ).getValue();
+                String status = (String) dataSnapshot.child( "status" ).getValue();
+                String image = (String) dataSnapshot.child( "image" ).getValue();
 
                 mProfilName.setText( display_name );
                 mProfilStatus.setText( status );
@@ -70,6 +75,11 @@ public class ProfilActivity extends AppCompatActivity {
         } );
 
 
+    }
 
+    public void CreatePrivatGroup(View view){
+        Intent intent = new Intent(this, CreatePrivatConversation.class);
+        Button button = (Button) findViewById( R.id.send_request ) ;
+        startActivity(intent);
     }
 }
