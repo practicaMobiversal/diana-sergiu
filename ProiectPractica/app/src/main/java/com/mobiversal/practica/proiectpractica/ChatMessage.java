@@ -6,20 +6,24 @@ package com.mobiversal.practica.proiectpractica;
 
 public class ChatMessage {
 
-    boolean isMine;
+
     private String text;
     private String name;
     private String photoUrl;
+    private String date;
+    private String UserId;
 
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String text, String name, String photoUrl, boolean isMine) {
+    public ChatMessage(String text, String name, String photoUrl, String date, String UserId) {
+
         this.text = text;
         this.name = name;
         this.photoUrl = photoUrl;
-        this.isMine = isMine;
+        this.date = date;
+        this.UserId = UserId;
     }
 
     public String getText() {
@@ -46,11 +50,20 @@ public class ChatMessage {
         this.photoUrl = photoUrl;
     }
 
-    public boolean isMine() {
-        return isMine;
+
+    public String getDate() {
+        return date;
     }
 
-    public void setMine(boolean isMine) {
-        this.isMine = isMine;
-    };
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
 }

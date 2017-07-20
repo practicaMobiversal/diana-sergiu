@@ -1,9 +1,7 @@
 package com.mobiversal.practica.proiectpractica.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -14,20 +12,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mobiversal.practica.proiectpractica.GroupAdapter;
 import com.mobiversal.practica.proiectpractica.MyAdapter;
 import com.mobiversal.practica.proiectpractica.PublicGroup;
 import com.mobiversal.practica.proiectpractica.R;
-import com.mobiversal.practica.proiectpractica.Users;
-import com.mobiversal.practica.proiectpractica.UsersAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,14 +99,7 @@ public class GroupFragments extends Fragment {
 //            }
 //
 //
-// protected void populateViewHolder(GroupsViewHolder viewHolder, PublicGroup model, int position) {
-//                Log.i("GroupFragments", "Populate view holder " + position + " with " + model);
-//                View imageView = viewHolder.itemView.findViewById(R.id.imageButton2);
-//                imageView.setTag(firebaseRecyclerAdapter.getRef(position).getKey());
-//                viewHolder.setName(model.getPublicGroupName());
-//            }
-//        };
-//
+
 // recyclerView.setAdapter(firebaseRecyclerAdapter);
 //
 // return view;

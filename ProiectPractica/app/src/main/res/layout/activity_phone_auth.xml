@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/desc_firebase_lockup"
-            android:src="@drawable/firebase_lockup_400" />
+            />
 
         <TextView
             android:id="@+id/title_text"
@@ -68,7 +68,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:text="0753084115"
                     android:hint="@string/hint_phone_number"
                     android:inputType="phone" />
 

@@ -6,6 +6,7 @@ package com.mobiversal.practica.proiectpractica;
 
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.mobiversal.practica.proiectpractica.fragments.Groups;
 
 import java.util.List;
 
@@ -63,6 +62,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         PublicGroup group = groupsList.get( position );
         holder.title.setText(group.getPublicGroupName());
         holder.imageView.setImageResource( R.drawable.publicgroup );
+
+        Log.i("GroupFragments", "Populate view holder " + position);
+        View imageView = holder.itemView.findViewById(R.id.imageButton2);
+        imageView.setTag(group.getPublicGroupName());
+        holder.title.setText(group.getPublicGroupName());
 
     }
 
