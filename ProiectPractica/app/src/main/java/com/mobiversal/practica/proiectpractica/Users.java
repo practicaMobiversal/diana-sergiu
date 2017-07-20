@@ -6,6 +6,7 @@ package com.mobiversal.practica.proiectpractica;
 
 public class Users {
 
+    private String id;
     public String displayName;
     public String image;
     public String status;
@@ -23,11 +24,20 @@ public class Users {
 
     }
 
-    public Users(String displayName, String image, String status, String thumb_image) {
+    public Users(String id, String displayName, String image, String status, String thumb_image) {
+        this.id = id;
         this.displayName = displayName;
         this.image = image;
         this.status = status;
         this.thumb_image = thumb_image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDisplayName() {

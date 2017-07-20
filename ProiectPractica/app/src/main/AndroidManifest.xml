@@ -47,6 +47,14 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity
+            android:name=".CreatePrivatConversation"
+            android:parentActivityName=".ProfilActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ProfilActivity"/>
+        </activity>
+
+        <activity
             android:name=".StatusActivity"
             android:parentActivityName=".ViewProfill">
         </activity>
@@ -60,12 +68,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
-        <activity android:name=".ProfilActivity">
+        <activity android:name=".ProfilActivity"
+                  android:parentActivityName=".UsersActivity"
+            >
         </activity>
  <activity android:name=".ChatDialogActivity"
             android:parentActivityName=".MainActivity"
             >
         </activity>
+    <activity android:name=".ChatPrivat"
+              android:parentActivityName=".MainActivity"
+        >
+    </activity>
+
+
 
 
     </application>

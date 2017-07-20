@@ -121,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+    public void gotoPrivatRoom(View view){
+        Intent intent = new Intent( this, ChatPrivat.class );
+        String privatId = (String) view.getTag();
+        intent.putExtra( "privatId", privatId );
+        startActivity( intent );
+    }
     public void gotoChatRoom(View view){
         Intent intent = new Intent (this, ChatDialogActivity.class);
         String groupId = (String)  view.getTag();

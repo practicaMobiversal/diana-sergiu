@@ -47,8 +47,6 @@ public class CreateGroup extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                String groupName = mCreateGroup.getText().toString();
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -1,6 +1,5 @@
 package com.mobiversal.practica.proiectpractica;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,9 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatDialogActivity extends AppCompatActivity {
+/**
+ * Created by Lenovo on 19.07.2017.
+ */
 
-    private static final String TAG = "ChatDialogActivity";
+public class ChatPrivat extends AppCompatActivity {
+
+    private static final String TAG = "ChatPrivat";
 
     public static final String ANONYMOUS = "anonymous";
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
@@ -57,12 +59,12 @@ public class ChatDialogActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_chatmessage );
 
-       // String user_is = getIntent().getStringExtra( "user_is" );
+        // String user_is = getIntent().getStringExtra( "user_is" );
 
 
         // mUsername = ANONYMOUS;
 
-        String groupId = getIntent().getExtras().getString( "groupId" );
+        String privatId = getIntent().getExtras().getString( "privatId" );
 
         mUserCurrent = FirebaseAuth.getInstance().getCurrentUser();
         assert mUserCurrent != null;
@@ -75,7 +77,7 @@ public class ChatDialogActivity extends AppCompatActivity {
         // mUsernameDatabaseReference = mFireBaseDatabase.getReference().child("users").child("displayName");
 
         mMessagesDatabaseReference = mFireBaseDatabase.getReference()
-                .child( "Messages" ).child( groupId );
+                .child( "Messages" ).child( privatId );
 
         //mMessages = mFireBaseDatabase.getReference().child( "Messages" ).child( user_is);
         // mMessagesDatabaseReference.keepSynced(true);
@@ -192,17 +194,5 @@ public class ChatDialogActivity extends AppCompatActivity {
         };
 
         mMessagesDatabaseReference.addChildEventListener( mChildEventListener );
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate( R.menu.toolbar_menu, menu );
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected( item );
     }
 }

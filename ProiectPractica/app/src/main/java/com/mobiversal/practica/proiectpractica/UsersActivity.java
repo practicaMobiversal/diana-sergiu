@@ -61,6 +61,7 @@ public class UsersActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     Users user = userSnapshot.getValue( Users.class );
+                    user.setId( userSnapshot.getKey() );
                     items.add(user);
 
                 }
@@ -72,9 +73,6 @@ public class UsersActivity extends AppCompatActivity {
                 llManager.setOrientation( LinearLayoutManager.VERTICAL );
                 mUsersList.setLayoutManager( new LinearLayoutManager( UsersActivity.this ) );
                 mUsersList.setAdapter( mAdapter );
-
-
-
 
             }
 
@@ -111,6 +109,13 @@ public class UsersActivity extends AppCompatActivity {
         } );
 
 
+    }
+
+    public void gotoProfil(View view){
+        Intent intent = new Intent (this, ProfilActivity.class);
+        String users_id =  (String) view.getTag();
+        intent.putExtra("users_id", users_id);
+        startActivity(intent);
     }
 
 

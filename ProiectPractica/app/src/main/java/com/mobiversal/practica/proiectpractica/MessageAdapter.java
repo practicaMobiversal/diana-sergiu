@@ -28,11 +28,14 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
         TextView msg = (TextView) convertView.findViewById(R.id.message_text);
         msg.setText(message.getText());
 
+        TextView name1 = (TextView) convertView.findViewById( R.id.message_user );
+        name1.setText( message.getName() );
+
 
 
         ImageView photoImageView = (ImageView) convertView.findViewById(R.id.photoImageView);
-        TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
-        TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
+        TextView messageTextView = (TextView) convertView.findViewById(R.id.message_text);
+        TextView authorTextView = (TextView) convertView.findViewById(R.id.message_user);
 
 
 
@@ -57,7 +60,6 @@ public class MessageAdapter extends ArrayAdapter<ChatMessage> {
 
         LinearLayout layout = (LinearLayout) convertView.findViewById(R.id.bubble_layout);
         LinearLayout parentLayout = (LinearLayout) convertView.findViewById(R.id.bubble_layout_parent);
-
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) parentLayout.getLayoutParams();
 
         if (message.isMine) {
