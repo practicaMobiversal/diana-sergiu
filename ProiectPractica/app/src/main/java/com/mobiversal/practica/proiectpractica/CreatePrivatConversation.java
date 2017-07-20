@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mobiversal.practica.proiectpractica.fragments.ConversationFragments;
 
 /**
  * Created by Lenovo on 19.07.2017.
@@ -45,16 +46,14 @@ public class CreatePrivatConversation extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_privat_conversation );
-        Intent intent = getIntent();
 
         mAuth = FirebaseAuth.getInstance();
         mAddGroupPrivat = (Button) findViewById( R.id.button8 );
         mPrivat = (EditText) findViewById( R.id.privat_name );
         user = FirebaseAuth.getInstance().getCurrentUser();
-        mConversaData = FirebaseDatabase.getInstance().getReference().child( "StartConversation" );
         pGroup = FirebaseDatabase.getInstance().getReference();
 
-        mCurrent_state = "not_start_conversation";
+
 
 
         mAddGroupPrivat.setOnClickListener( new View.OnClickListener() {
@@ -70,11 +69,10 @@ public class CreatePrivatConversation extends AppCompatActivity {
                 myRefe.setValue( grup );
 
 
-                if (mCurrent_state.equals( "not_start_conversation" )){
-                    mConversaData.child( user.getUid() );
-                }
-
-
+//                Intent chat = new Intent( getApplicationContext(), ChatPrivat.class );
+//                String privatId =  (String) v.getTag();
+//                chat.putExtra( "user_id", privatId );
+//                startActivity( chat );
             }
         } );
     }
